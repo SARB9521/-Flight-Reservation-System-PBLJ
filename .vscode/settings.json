@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "Flight-reservation-system\\WEB-INF\\classes"
+    ],
+    "java.project.referencedLibraries": [
+        "c:\\Tomcat9\\lib\\mysql-connector-j-9.5.0.jar",
+        "c:\\Tomcat9\\lib\\servlet-api.jar"
+    ]
+}

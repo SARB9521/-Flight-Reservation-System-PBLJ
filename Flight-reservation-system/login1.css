@@ -1,0 +1,131 @@
+body
+{
+    margin: 10%;
+    padding: 0;
+}
+.register{
+   /* background-image:url("https://cdn.pixabay.com/photo/2012/06/28/08/26/plane-50893_640.jpg");*/
+    background-size:cover;
+    justify-content: center;
+    /* background: -webkit-linear-gradient(left, #0a2499e3, #e2e7ed); */
+    background: linear-gradient(to right,#1a1a1a 0%,#1a1a1a 30%,#e2e7ed 30%,#e2e7ed 100%);
+    margin-bottom: 0%;
+    color: #f8f9fa;
+    padding: 10%;
+}
+.register-left img{
+    position: relative;
+    right: 50px;
+    margin-top: 10%;
+    margin-bottom: 0%;
+    width: 30%;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+.register-left{
+    font-style: italic;
+    text-align: center;
+    color: #fff3f3;
+    margin-top: 4%;
+}
+.register-left input{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    width: 60%;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #2940b6;
+    margin-top: 30%;
+    margin-bottom: 3%;
+    cursor: pointer;
+}
+.register-right{
+    position: relative;
+    bottom: 40px;
+    left: 100px;
+    background: #00000099;
+    border-top-left-radius: 5% 10%;
+    border-bottom-left-radius: 5% 10%;
+    border-top-right-radius: 5% 10%;
+    border-bottom-right-radius: 5% 10%;
+}
+.register-left p{
+    font-weight: lighter;
+    padding: 12%;
+    margin-top: 7%;
+    margin-top: -9%;
+    font-size: large;
+    position: relative;
+    right: 50px;
+}
+.register-left h3{
+    position: relative;
+    right: 50px;
+    margin-top: 0%;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:900;
+}
+.register .register-form{
+    padding: 10%;
+    margin-top: 7%;
+    margin-left: 5%;
+    justify-content: center;
+}
+.btnRegister{
+    float: right;
+    margin-top: 5%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor:pointer;
+}
+.btnRegister:hover{
+    background-color: #272626;
+}
+.register .nav-tabs{
+    margin-top: 0%;
+    border: none;
+    background: #1a1a1a;
+    border-radius: 1.5rem;
+    width: 20.0%;
+    position: relative;
+    left: 70%;
+    top: 50px;
+}
+.register .nav-tabs .nav-link{
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.register .nav-tabs .nav-link:hover{
+    border: none;
+}
+.register .nav-tabs .nav-link.active{
+    width: 100px;
+    color: black;
+    border: none;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+.register-heading{
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #ffffff;
+}

@@ -1,0 +1,200 @@
+<%@ page import="java.sql.*"%>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="login1.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<body>
+<form>
+<div class=" register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="logo1.png" name="logo" alt="logo"/>
+            <h3>FindFlight</h3>
+            <p>Where will you go next? Start your journey with us!</p>
+            <!--<input type="submit" name="" value="Login"/><br/>-->
+        </div>
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Login</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Register</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" placeholder="Username" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="email" placeholder="Your Email  *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" minlength="10" maxlength="10" name="phone" class="form-control" placeholder="Your Phone *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <div class="maxl">
+                                    <label class="radio inline"> 
+                                        <input type="radio" name="gender" value="male" checked>
+                                        <span> Male </span> 
+                                    </label>
+                                    <label class="radio inline"> 
+                                        <input type="radio" name="gender" value="female">
+                                        <span>Female </span> 
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Password *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
+                            </div>
+                            <input type="submit" class="btnRegister" name="register" id="register"  value="Register"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <h3  class="register-heading">Login</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select class="form-control"  name="select" id="select">
+                                    <option class="hidden"  selected disabled>I am a </option>
+                                    <option>Passenger</option>
+                                    <option>Admin</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="t1" placeholder="Username" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="t2" placeholder="Password *" value="" />
+                            </div>
+                            <input  type="submit" name = "login" class="btnRegister" id="login" value="login">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>	
+</body>
+</html>			                       
+<%  
+    try
+    {   
+        PreparedStatement psmt = null; 
+        Statement smt = null;
+        Connection con = null;
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FindFlights","root","");
+        String register = request.getParameter("register");
+        if(register!=null)
+        {   
+        
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String phone = (request.getParameter("phone"));
+            String password = request.getParameter("password");
+            String gender = request.getParameter("gender");
+
+            psmt = con.prepareStatement("insert into Passanger_details values(?,?,?,?,?)");
+            psmt.setString(1,name);
+            psmt.setString(2,email);
+            psmt.setString(3,phone);
+            psmt.setString(4,password);
+            psmt.setString(5,gender);
+
+            int cnt = psmt.executeUpdate();
+            if(cnt>=1)
+            {
+                out.println("<script> alert('Record inserted') </script>");
+            }
+            else
+            {
+                out.println("<script> alert('Record not inserted') </script>");
+            }
+        }
+
+        String btn = request.getParameter("login");
+        if(btn!=null)
+        {
+            String person = request.getParameter("select");
+            
+            if(person.equals("Passenger"))
+            {   
+                String a = request.getParameter("t1");
+                String b = request.getParameter("t2");
+                smt = con.createStatement();
+                ResultSet rs = smt.executeQuery("Select * from Passanger_details");
+                int flag=0;
+                while(rs.next())
+                {   
+                    if(a.equals(rs.getString(1)) && b.equals(rs.getString(4)))
+                    {
+                        response.sendRedirect("http://127.0.0.1:7575/JSP/project/FindFlights/.vscode/passenger.jsp");
+                        break;
+                    }
+                    else 
+                    {
+                        flag =0;
+                    }  
+                }
+                if(flag ==1)
+                {
+                    out.println("<script> alert('login sucessfull') </script>"); 
+                }
+                else
+                {
+                    out.println("<script> alert('invalid user id or password') </script>"); 
+                }
+            }
+            else if(person.equals("Admin"))
+            {
+                String a = request.getParameter("t1");
+                String b = request.getParameter("t2");
+                smt = con.createStatement();
+                ResultSet rs = smt.executeQuery("Select * from admin");
+                int flag=0;
+                
+                while(rs.next())
+                {   
+                    if(a.equals(rs.getString(1)) && b.equals(rs.getString(2)))
+                    {
+                        response.sendRedirect("http://127.0.0.1:7575/JSP/project/FindFlights/admidashboard/admindashboard.jsp");
+                        break;
+                    }
+                    else 
+                    {
+                        flag =0;
+                    }  
+                }
+                if(flag ==0)
+                {
+                    out.println("<script> alert('invalid user id or password') </script>"); 
+                }
+            }
+                           
+        }
+    }
+    catch(Exception e)
+    {
+            out.println(""+e);
+    } 
+%>

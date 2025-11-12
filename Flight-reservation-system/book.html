@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Flights</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #022d6d, #e6ebfd);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffffd9;
+      border-radius: 10px;
+      padding: 40px;
+      width: 420px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 25px;
+      color: #022d6d;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      text-align: left;
+      color: #022d6d;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      background-color: #022d6d;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      border: none;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #0041a8;
+    }
+
+    .result {
+      margin-top: 20px;
+      color: #022d6d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Search Flights</h1>
+    
+    <!-- ✅ FIXED: use POST to match servlet’s doPost() -->
+    <form action="FindFlightServlet" method="post">
+      <label for="from_city">From:</label>
+      <input type="text" id="from_city" name="from_city" placeholder="City or Airport" required />
+
+      <label for="to_city">To:</label>
+      <input type="text" id="to_city" name="to_city" placeholder="City or Airport" required />
+
+      <label for="departure_date">Departure Date:</label>
+      <input type="date" id="departure_date" name="departure_date" required />
+
+      <label for="class">Class:</label>
+      <select id="class" name="class">
+        <option>Economy</option>
+        <option>Premium Economy</option>
+        <option>Business</option>
+      </select>
+
+      <button type="submit">Search Flights</button>
+    </form>
+
+    <div class="result" id="result"></div>
+  </div>
+</body>
+</html>
